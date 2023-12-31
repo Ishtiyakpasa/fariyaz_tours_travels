@@ -10,20 +10,59 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user{
   id        Int     @id @default(autoincrement())
-  name      String   
+  fname      String   
   lname     String    
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime 
+  status    Int @default(1)
+  bookings  bookings[]
 }
 
-model Hajj_booking{
-  id        Int     @id @default(autoincrement())
-  
+model bookings{
+   id              Int     @id @default(autoincrement())
+   adult_count     Int
+   child_count     Int
+   contact         Int
+   user_id         Int      
+   user            user? @relation(fields: [user_id], references: [id])
+}
+
+model package_category{
+  id             Int     @id @default(autoincrement())
+  name           String
+  adult_price    Float
+  child_price    Float
+  total_price    Float
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  deletedAt      DateTime 
+  status         Int @default(1)
+  packages packages[]
+}
+
+model packages {
+  id             Int     @id @default(autoincrement())
+  name           String  @unique
+  description    String
+  days           Int
+  departure_city String
+  departure_date DateTime
+  arrival_date   DateTime
+  adult_price    Float
+  child_price    Float
+  hotel_distence Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  deletedAt      DateTime 
+  status         Int @default(1)
+  hotel          String
+  package_category_id Int
+  package_category    package_category? @relation(fields: [package_category_id], references: [id])
 }
 
 
