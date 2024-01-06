@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-topbar-color="dark">
+  <head>
+    <%- include ('../admin/comman/title-meta') %>
+    <%- HeaderCss %>
+    <%- include ('../admin/comman/head-css')%>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <%- include ('../admin/comman/sidenav') %>
+
+      <div class="content-page">
+        <%- include ('../admin/comman/topbar') %>
+
+        <div class="content">
+          <div class="container-fluid">
+            <%- include ('../admin/comman/page-title') %>
+            <%- body %>
+          </div>
+        </div>
+
+        <%- include ('../admin/comman/footer') %>
+      </div>
+    </div>
+    <%- include ('../admin/comman/footer-scripts') %> 
+    <%-FooterJs %>
+  </body>
+</html>

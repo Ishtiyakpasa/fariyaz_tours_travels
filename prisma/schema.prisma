@@ -12,7 +12,7 @@ datasource db {
 
 model user{
   id        Int     @id @default(autoincrement())
-  fname      String   
+  fname     String   
   lname     String    
   email     String   @unique
   password  String
@@ -28,8 +28,13 @@ model bookings{
    adult_count     Int
    child_count     Int
    contact         Int
+   state           String
+   city            String
+   travel_date     DateTime
    user_id         Int      
+   package_id      Int
    user            user? @relation(fields: [user_id], references: [id])
+   packages         packages? @relation(fields: [package_id], references: [id])
 }
 
 model package_category{
@@ -45,12 +50,15 @@ model package_category{
   packages packages[]
 }
 
-model packages {
+model packages{
   id             Int     @id @default(autoincrement())
   name           String  @unique
   description    String
   days           Int
   departure_city String
+  small_thumb    String
+  large_thumb    String
+  gallary_image  Json 
   departure_date DateTime
   arrival_date   DateTime
   adult_price    Float
@@ -61,8 +69,20 @@ model packages {
   deletedAt      DateTime 
   status         Int @default(1)
   hotel          String
+  bookings        bookings[]
   package_category_id Int
   package_category    package_category? @relation(fields: [package_category_id], references: [id])
+}
+
+model contact_us{
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String
+  conatct   Int
+  city      String
+  createdAt DateTime @default(now())
 }
 
 
