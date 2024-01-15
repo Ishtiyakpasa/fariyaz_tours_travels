@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookings Management</title>
+    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <%- include('comman/head-css') %>
+</head>
+<body>
+    <div id="wrapper">
+        <%- include ('comman/sidenav') %>
+            <div class="content-page">
+                <%- include ('comman/topbar') %>
+                    <div class="content">
+                        <div class="container">
+                            <h1>Message</h1>
+                        </div>
+                    </div>
+            </div>
+                <%- include ('comman/footer') %>
+    </div>
+    <%- include ('comman/footer-scripts') %>
+    <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+
+    <!-- Dashboar 1 init js-->
+    <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
+</body>
+</html>

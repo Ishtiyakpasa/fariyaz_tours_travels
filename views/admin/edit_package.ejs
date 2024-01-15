@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookings Management</title>
+    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <%- include('comman/head-css') %>
+</head>
+<body>
+    <div id="wrapper">
+        <%- include ('comman/sidenav') %>
+            <div class="content-page">
+                <%- include ('comman/topbar') %>
+                    <div class="content">
+                        <div class="container">
+                            <div class="row mt-2">
+                              <form action="" method="post">
+
+                                <div class="mb-3">
+                                  <label for="simpleinput" class="form-label">Package Name</label>
+                                  <input type="text" id="name" class="form-control" value="<%= packages.name %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-select" class="form-label">Package Category</label>
+                                  <select class="form-select" id="package_category" value="<%= packages.package_category %>">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                  </select>
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="simpleinput" class="form-label">Departure City</label>
+                                  <input type="text" id="departure_city" class="form-control" value="<%= packages.departure_city %>">
+                                </div>
+
+
+                                <div class="mb-3">
+                                  <label for="simpleinput" class="form-label">Adult Price</label>
+                                  <input type="number" id="adult_price" class="form-control" value="<%= packages.adult_price %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="simpleinput" class="form-label">Child Price</label>
+                                  <input type="number" id="child_price" class="form-control" value="<%= packages.child_price %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-date" class="form-label">Departure Date</label>
+                                  <input class="form-control" id="departure_date" type="date" name="date" value="<%= packages.departure_date %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-date" class="form-label">Arrivel Date</label>
+                                  <input class="form-control" id="arrival_date" type="date" name="date" value="<%= packages.username %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="simpleinput" class="form-label">Duration Days</label>
+                                  <input type="number" id="days" class="form-control" value="<%= packages.days %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-textarea" class="form-label">Description</label>
+                                  <textarea class="form-control" id="description" rows="5" value="<%= packages.description %>"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-fileinput" class="form-label">Upload Small Thumbnail</label>
+                                  <input type="file" id="small_thumb" class="form-control" value="<%= packages.small_thumb %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="example-fileinput" class="form-label">Upload Large Thumbnail</label>
+                                  <input type="file" id="large_thumb" class="form-control" value="<%= packages.large_thumb %>">
+                                </div>
+
+                                <div class="mb-3">
+                                  <label for="formFileMultiple" class="form-label">Upload Gallary Image</label>
+                                  <input class="form-control" type="file" id="gallary_image" value="<%= packages.gallary_image %>" multiple>
+                                </div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                <%- include ('comman/footer') %>
+    </div>
+    <%- include ('comman/footer-scripts') %>
+    <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+
+    <!-- Dashboar 1 init js-->
+    <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
+</body>
+</html>

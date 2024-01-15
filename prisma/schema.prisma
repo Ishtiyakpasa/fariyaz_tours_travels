@@ -28,26 +28,13 @@ model bookings{
    adult_count     Int
    child_count     Int
    contact         Int
+   total_price     Float
    state           String
    city            String
-   travel_date     DateTime
    user_id         Int      
    package_id      Int
    user            user? @relation(fields: [user_id], references: [id])
    packages         packages? @relation(fields: [package_id], references: [id])
-}
-
-model package_category{
-  id             Int     @id @default(autoincrement())
-  name           String
-  adult_price    Float
-  child_price    Float
-  total_price    Float
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  deletedAt      DateTime 
-  status         Int @default(1)
-  packages packages[]
 }
 
 model packages{
@@ -56,22 +43,21 @@ model packages{
   description    String
   days           Int
   departure_city String
-  small_thumb    String
-  large_thumb    String
-  gallary_image  Json 
-  departure_date DateTime
-  arrival_date   DateTime
-  adult_price    Float
-  child_price    Float
+  small_thumb    String?
+  large_thumb    String?
+  gallary_image  Json?
+  departure_date DateTime?
+  arrival_date   DateTime?
+  adult_price    Float @default(0.00)
+  child_price    Float @default(0.00)
   hotel_distence Int
   createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  deletedAt      DateTime 
+  updatedAt      DateTime? @updatedAt
+  deletedAt      DateTime? 
   status         Int @default(1)
   hotel          String
   bookings        bookings[]
-  package_category_id Int
-  package_category    package_category? @relation(fields: [package_category_id], references: [id])
+  package_category String
 }
 
 model contact_us{

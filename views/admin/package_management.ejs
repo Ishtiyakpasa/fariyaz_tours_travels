@@ -1,207 +1,206 @@
-<%- contentFor('HeaderCss') %>
 
-<%- contentFor('body') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Management</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="header-title">Add &amp; Remove Rows</h4>
-                <p class="sub-header">
-                    Add or remove rows from your FooTable.
-                </p>
+    <%- include('comman/head-css') %>
+</head>
+<body>
 
-                <div class="mb-2">
-                    <div class="row row-cols-sm-auto g-2 align-items-center">
-                        <div class="col-12 text-sm-center">
-                            <button id="demo-btn-addrow" class="btn btn-primary">
-                                <i class="mdi mdi-plus-circle me-2"></i>
-                                Add New Row</button>
-                        </div>
-                        <div class="col-12">
-                            <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+    <div id="wrapper">
+        <%- include ('comman/sidenav') %>
+            <div class="content-page">
+                <%- include ('comman/topbar') %>
+                    <div class="content">
+                        <div class="container-fluid my-4">
+                            <h3>PACKAGES</h3>
+                            <div class="row mt-4 justify-content-end">
+                                <div class="col-2">
+                                    <a href="package_management/add_package" class="btn btn-primary">ADD PACKAGE
+                                        <!-- <i class="material-symbols-outlined"></i> -->
+                                    </a>  
+                                </div>                          
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">                                            
+                                            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <table id="demo-foo-addrow" class="table table-centered table-striped table-bordered mb-0 toggle-circle" data-page-size="7">
-                    <thead>
-                        <tr>
-                            <th data-sort-ignore="true" class="min-width"></th>
-                            <th data-sort-initial="true" data-toggle="true">First Name</th>
-                            <th>Last Name</th>
-                            <th data-hide="phone">Job Title</th>
-                            <th data-hide="phone, tablet">DOB</th>
-                            <th data-hide="phone, tablet">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Isidra</td>
-                            <td>Boudreaux</td>
-                            <td>Traffic Court Referee</td>
-                            <td>22 Jun 1972</td>
-                            <td>
-                                <span class="badge label-table bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Shona</td>
-                            <td>Woldt</td>
-                            <td>Airline Transport Pilot</td>
-                            <td>3 Oct 1981</td>
-                            <td>
-                                <span class="badge label-table bg-secondary text-light">Disabled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Granville</td>
-                            <td>Leonardo</td>
-                            <td>Business Services Sales Representative</td>
-                            <td>19 Apr 1969</td>
-                            <td>
-                                <span class="badge label-table bg-danger">Suspended</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Easer</td>
-                            <td>Dragoo</td>
-                            <td>Drywall Stripper</td>
-                            <td>13 Dec 1977</td>
-                            <td>
-                                <span class="badge label-table bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Maple</td>
-                            <td>Halladay</td>
-                            <td>Aviation Tactical Readiness Officer</td>
-                            <td>30 Dec 1991</td>
-                            <td>
-                                <span class="badge label-table bg-danger">Suspended</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Maxine</td>
-                            <td>
-                                <a href="#">Woldt</a>
-                            </td>
-                            <td>
-                                <a href="#">Business Services Sales Representative</a>
-                            </td>
-                            <td>17 Oct 1987</td>
-                            <td>
-                                <span class="badge label-table bg-secondary text-light">Disabled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Lorraine</td>
-                            <td>Mcgaughy</td>
-                            <td>Hemodialysis Technician</td>
-                            <td>11 Nov 1983</td>
-                            <td>
-                                <span class="badge label-table bg-secondary text-light">Disabled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Lizzee</td>
-                            <td>
-                                <a href="#">Goodlow</a>
-                            </td>
-                            <td>Technical Services Librarian</td>
-                            <td>1 Nov 1961</td>
-                            <td>
-                                <span class="badge label-table bg-danger">Suspended</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Judi</td>
-                            <td>Badgett</td>
-                            <td>Electrical Lineworker</td>
-                            <td>23 Jun 1981</td>
-                            <td>
-                                <span class="badge label-table bg-success">Active</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <button class="demo-delete-row btn btn-danger btn-xs btn-icon">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                            <td>Lauri</td>
-                            <td>Hyland</td>
-                            <td>Blackjack Supervisor</td>
-                            <td>15 Nov 1985</td>
-                            <td>
-                                <span class="badge label-table bg-danger">Suspended</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr class="active">
-                            <td colspan="6">
-                                <div class="text-end">
-                                    <ul class="pagination pagination-split justify-content-end footable-pagination"></ul>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
             </div>
-        </div>
-        <!-- end card -->
+                <%- include ('comman/footer') %>
     </div>
-    <!-- end col -->
-</div>
-<%- contentFor('FooterJs') %>
-	<!-- Footable js -->
-	<script src="assets/libs/footable/footable.all.min.js"></script>
 
-	<!-- Init js -->
-	<script src="assets/js/pages/foo-tables.init.js"></script>
+    <%- include ('comman/footer-scripts') %>
+    <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+    <!-- Ensure jQuery is loaded first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables script -->
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <!-- Dashboar 1 init js-->
+<script>
+    // $('#basic-datatable').dataTable().fnDestroy();
+    var handleDataTableButtons = function() {
+    "use strict";
+    0 !== $("#basic-datatable").length && $("#basic-datatable").DataTable({
+        bProcessing: true,
+        ajax: {
+            url: '<%= baseUrl %>/admin/package_management/data',
+            type: "GET",
+            dataType:'json'
+        },
+        dom: "Bfrtip",
+        // serverSide: true,
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+            {
+                extend: "pageLength",
+                className: "btn-sm"
+            },
+            // {
+            // extend: "copy",
+            // className: "btn-sm"
+            // },
+            // {
+            //     extend: "csv",
+            //     className: "btn-sm"
+            // } 
+        ],
+        aoColumns       : [
+        {
+            mData       : "id",
+            sName       : "id", 
+            sTitle      : "Sr No." ,
+            searchable  : false,
+            orderable   : false,
+            targets     : 0
+        },
+        {
+            mData       : "name",
+            sName       : "name", 
+            sTitle      : "Package Name" ,
+            searchable  : true,
+            orderable   : true,
+        },
+        {
+            mData       : "days", // database coloum name
+            sName       : "days", // database coloum name
+            sTitle      : "Duration", //HTML column name(Title)
+            searchable  : true,
+            orderable   : true
+        },
+        {
+            mData       : "departure_city", // database coloum name
+            sName       : "departure_city", // database coloum name
+            sTitle      : "Departure City", //HTML column name(Title)
+            searchable  : true,
+            orderable   : true
+        },
+        {
+            mData       : "package_category",
+            sName       : "package_category", 
+            sTitle      : "Package Category" ,
+            searchable  : true,
+            orderable   : true,
+        },
+        {
+            mData       : "child_price",
+            sName       : "child_price", 
+            sTitle      : "Child Price" ,
+            searchable  : true,
+            orderable   : true,
+        },
+        {
+            mData       : "adult_price", // database coloum name
+            sName       : "adult_price", // database coloum name
+            sTitle      : "Adult Price", //HTML column name(Title)
+            searchable  : true,
+            orderable   : true
+        },
+        {
+            mData: "id", //database coloum name
+            sTitle: "Action", //HTML column name(Title)
+            searchable  : false,
+            orderable   : false,
+            targets     : 0,
+            mRender: function ( data , type, row )
+            {
+               let write_access = 1;
+                if(write_access == 1)
+                {
+                    return  '<a href="<%= baseUrl %>/admin/admin_user/add_edit_admin_user/'+row.id+'" id="edit_click" class="btn btn-success btn-xs" style="margin-right: 0px;">Edit</a>  <a href="javascript:delete_row('+row.id+');" class="btn btn-danger btn-xs delete_menu" style="margin-right: 0px;" data-landing-id='+row.id+'>Remove</a>';
+                }else if(write_access == 1){
+                    return  '<a href="<%= baseUrl %>/admin/admin_user/add_edit_admin_user/'+row.id+'" id="edit_click" class="btn btn-success btn-xs" style="margin-right: 0px;">Edit</a>';
+                }else if(delete_access == 1){
+                    return  '<a href="javascript:delete_row('+row.id+');" class="btn btn-danger btn-xs delete_menu" style="margin-right: 0px;" data-landing-id='+row.id+'>Remove</a>';
+                }else{
+                    return 'NA';
+                }
+            }
+        }
+        ],
+        fnDrawCallback: function ( oSettings ) {
+            for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+            {
+                $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( oSettings._iDisplayStart+i+1 );
+            }
+        },
+        order: [[ 2, 'desc' ]],
+        // autoWidth :true,
+    })
+},
+
+TableManageButtons = function() {
+    "use strict";
+    return {
+        init: function() {
+            handleDataTableButtons()
+        }
+    }
+}();
+$("#basic-datatable thead th input[type=text]").on( 'keyup change', function () {
+    $("#basic-datatable").DataTable()
+    .search(this.value )
+    .draw();
+    
+});
+</script>
+<script>
+     $(document).ready(function() {
+            TableManageButtons.init();
+        });
+</script>
+</body>
+</html>

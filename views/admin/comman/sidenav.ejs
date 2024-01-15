@@ -2,7 +2,7 @@
 <div class="app-menu">  
 
     <!-- Brand Logo -->
-    <div class="logo-box border border-dark border-3 text-center text-dark">
+    <div class="logo-box text-center text-dark">
         <div>ADMIN PANEL</div>
     </div>
 
@@ -11,7 +11,7 @@
 
         <!-- User box -->
         <div class="user-box text-center">
-            <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
+            <img src="<%= baseUrl %>/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block" data-bs-toggle="dropdown">Geneva Kennedy</a>
                 <div class="dropdown-menu user-pro-dropdown">
@@ -50,37 +50,37 @@
             <li class="menu-title">Navigation</li>
 
             <li class="menu-item border border-dark">
-                <a href="#menuDashboards" data-bs-toggle="collapse" class="menu-link">
+                <a href="<%= baseUrl %>/admin" class="menu-link">
                     <span class="menu-icon"><i data-feather="airplay"></i></span>
                     <span class="menu-text"> Dashboards </span>
                 </a>
-                
+            </li>
 
             <li class="menu-item mt-md-3 border border-dark">
-                <a href="apps-chat" class="menu-link">
+                <a href="<%= baseUrl %>/admin/booking_management" class="menu-link">
                     <span class="menu-icon"><i data-feather="arrow-up"></i></span>
                     <span class="menu-text"> Bookings Detail </span>
                 </a>
             </li>
 
             <li class="menu-item mt-md-3 border border-dark">
-                <a href="apps-chat" class="menu-link">
+                <a href="<%= baseUrl %>/admin/package_management" class="menu-link">
                     <span class="menu-icon"><i data-feather="package"></i></span>
                     <span class="menu-text"> Packages </span>
                 </a>
             </li>
 
             <li class="menu-item mt-md-3 border border-dark">
-                <a href="apps-chat" class="menu-link">
+                <a href="<%= baseUrl %>/admin/payment_management" class="menu-link">
                     <span class="menu-icon"><i data-feather="thumbs-up"></i></span>
                     <span class="menu-text"> Payments </span>
                 </a>
             </li>
 
             <li class="menu-item mt-md-3 border border-dark">
-                <a href="apps-chat" class="menu-link">
+                <a href="<%= baseUrl %>/admin/message" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Contact </span>
+                    <span class="menu-text"> Messages </span>
                 </a>
             </li>
 
