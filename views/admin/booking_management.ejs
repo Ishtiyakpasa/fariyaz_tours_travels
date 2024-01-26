@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bookings Management</title>
+    <link href="<%= baseUrl %>/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%= baseUrl %>/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%= baseUrl %>/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%= baseUrl %>/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
-    <%- include('comman/head-css') %>
+    <%- include('common/head-css') %>
 </head>
 <body>
     <div id="wrapper">
-        <%- include ('comman/sidenav') %>
+        <%- include ('common/sidenav') %>
             <div class="content-page">
-                <%- include ('comman/topbar') %>
+                <%- include ('common/topbar') %>
                     <div class="content">
                         <div class="container-fluid my-4">
                             <div class="row mt-2">
@@ -24,32 +28,16 @@
                                             <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                                                 <thead>
                                                     <tr>
-                                                        <th>User Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Email ID</th>
-                                                        <th>Password</th>
-                                                        <th>Created Date</th>
-                                                        <th>Operation</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                         
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Tiger Nixon</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>$320,800</td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger">DELETE
-                                                                <i class=" fas fa-trash-alt"></i>
-                                                            </button>
-                                                            <a href="" class="btn btn-info">EDIT
-                                                                <i class="fas fa-edit"></i>
-                                                            </a>  
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                         
@@ -63,14 +51,28 @@
                         </div>
                     </div>
             </div>
-                <%- include ('comman/footer') %>
+                <%- include ('common/footer') %>
     </div>
-    <%- include ('comman/footer-scripts') %>
+    <%- include ('common/footer-scripts') %>
     <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
     <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
     <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
 
     <!-- Dashboar 1 init js-->
     <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
+    <!--including files for responsive table-->
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="<%= baseUrl %>/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+	<script src="<%= baseUrl %>/assets/libs/pdfmake/build/vfs_fonts.js"></script>
 </body>
 </html>

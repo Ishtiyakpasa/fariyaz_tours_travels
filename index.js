@@ -16,14 +16,24 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(cookieParser());
+app.use(
+  session({
+    secret: 'your-secret-key', // Change this to a secure secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Set to true if using HTTPS
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/admin',admin)
-app.use('/user', user)
+app.use('/admin',admin);
+app.use('/user', user);
 
 app.use(express.static(__dirname + '/public'));
-app.set('layout', 'comman/layout-vertical');
+app.set('layout', 'common/layout-vertical');
 app.use(expressLayouts);
 app.use(upload());
 
@@ -31,4 +41,4 @@ app.use(express.json());
 app.use(session({ resave: false, saveUninitialized: true, secret: 'nodedemo' }));
 app.use(cookieParser());
 
-app.listen(7000)
+app.listen(7000);

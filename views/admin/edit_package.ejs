@@ -1,104 +1,191 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bookings Management</title>
-    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
-    <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
-    <%- include('comman/head-css') %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Package</title>
+  <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+  <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.min.css">
+
+  <%- include('common/head-css') %>
 </head>
+
 <body>
-    <div id="wrapper">
-        <%- include ('comman/sidenav') %>
-            <div class="content-page">
-                <%- include ('comman/topbar') %>
-                    <div class="content">
-                        <div class="container">
-                            <div class="row mt-2">
-                              <form action="" method="post">
+  <div id="wrapper">
+    <%- include ('common/sidenav') %>
+      <div class="content-page">
+        <%- include ('common/topbar') %>
+          <div class="content">
+            <div class="container">
+              <div class="row mt-2">
+                <form id="editPackageForm" action="<%= baseUrl %>/admin/package_management/edit_package" method="post">
 
-                                <div class="mb-3">
-                                  <label for="simpleinput" class="form-label">Package Name</label>
-                                  <input type="text" id="name" class="form-control" value="<%= packages.name %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Package Name</label>
+                    <input type="text" id="name" name="name" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-select" class="form-label">Package Category</label>
-                                  <select class="form-select" id="package_category" value="<%= packages.package_category %>">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                  </select>
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-select" class="form-label">Package Category</label>
+                    <select class="form-select" id="package_category" name="package_category" value="">
+                      <option>Haj</option>
+                      <option>Ummrah</option>
+                    </select>
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="simpleinput" class="form-label">Departure City</label>
-                                  <input type="text" id="departure_city" class="form-control" value="<%= packages.departure_city %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Departure City</label>
+                    <input type="text" id="departure_city" name="departure_city" class="form-control" value="">
+                  </div>
 
 
-                                <div class="mb-3">
-                                  <label for="simpleinput" class="form-label">Adult Price</label>
-                                  <input type="number" id="adult_price" class="form-control" value="<%= packages.adult_price %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Adult Price</label>
+                    <input type="number" id="adult_price" name="adult_price" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="simpleinput" class="form-label">Child Price</label>
-                                  <input type="number" id="child_price" class="form-control" value="<%= packages.child_price %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Child Price</label>
+                    <input type="number" id="child_price" name="child_price" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-date" class="form-label">Departure Date</label>
-                                  <input class="form-control" id="departure_date" type="date" name="date" value="<%= packages.departure_date %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-date" class="form-label">Departure Date</label>
+                    <input class="form-control" id="departure_date" name="departure_date" type="date" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-date" class="form-label">Arrivel Date</label>
-                                  <input class="form-control" id="arrival_date" type="date" name="date" value="<%= packages.username %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-date" class="form-label">Arrivel Date</label>
+                    <input class="form-control" id="arrival_date" type="date" name="arrival_date" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="simpleinput" class="form-label">Duration Days</label>
-                                  <input type="number" id="days" class="form-control" value="<%= packages.days %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Duration Days</label>
+                    <input type="number" id="days" name="days" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-textarea" class="form-label">Description</label>
-                                  <textarea class="form-control" id="description" rows="5" value="<%= packages.description %>"></textarea>
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-textarea" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="5" value=""></textarea>
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-fileinput" class="form-label">Upload Small Thumbnail</label>
-                                  <input type="file" id="small_thumb" class="form-control" value="<%= packages.small_thumb %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-fileinput" class="form-label">Upload Small Thumbnail</label>
+                    <input type="file" id="small_thumb" name="small_thumb" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="example-fileinput" class="form-label">Upload Large Thumbnail</label>
-                                  <input type="file" id="large_thumb" class="form-control" value="<%= packages.large_thumb %>">
-                                </div>
+                  <div class="mb-3">
+                    <label for="example-fileinput" class="form-label">Upload Large Thumbnail</label>
+                    <input type="file" id="large_thumb" name="large_thumb" class="form-control" value="">
+                  </div>
 
-                                <div class="mb-3">
-                                  <label for="formFileMultiple" class="form-label">Upload Gallary Image</label>
-                                  <input class="form-control" type="file" id="gallary_image" value="<%= packages.gallary_image %>" multiple>
-                                </div>
-                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                              </form>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload Gallary Image</label>
+                    <input class="form-control" type="file" id="gallary_image" name="gallary_image" value="" multiple>
+                  </div>
+                  <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                </form>
+              </div>
             </div>
-                <%- include ('comman/footer') %>
-    </div>
-    <%- include ('comman/footer-scripts') %>
+          </div>
+      </div>
+      <%- include ('common/footer') %>
+  </div>
+  <%- include ('common/footer-scripts') %>
     <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
     <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
     <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
-
     <!-- Dashboar 1 init js-->
-    <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
+    <script src="<%= baseUrl %>/assets/js/get_entity_id.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script>
+    <script>
+      // Fetch package details using AJAX
+      $(document).ready(function () {
+        var packageId = getEntityIdFromUrl();
+        var apiUrl = '<%= baseUrl %>/admin/package_management/get_package/' + packageId;
+
+        $.ajax({
+          url: apiUrl,
+          type: 'GET',
+          dataType: 'json',
+          success: function (response) {
+            var departureDate = response.departure_date ? new Date(response.departure_date) : null;
+            var arrivalDate = response.arrival_date ? new Date(response.arrival_date) : null;
+            // Populate form fields with the fetched data
+            $('#name').val(response.name);
+            $('#package_category').val(response.package_category);
+            $('#departure_city').val(response.departure_city);
+            $('#adult_price').val(response.adult_price);
+            $('#child_price').val(response.child_price);
+            $('#departure_date').val(formatDate(departureDate)); // Use a function to format the date
+            $('#arrival_date').val(formatDate(arrivalDate));
+            $('#days').val(response.days);
+            $('#description').val(response.description);
+            $('#small_thumb').val(response.small_thumb);
+            $('#large_thumb').val(response.large_thumb);
+            $('#gallary_image').val(response.gallary_image);
+            // Populate other form fields similarly
+          },
+          error: function (error) {
+            console.error('Error fetching package details:', error);
+            // Handle error appropriately
+          }
+        });
+      });
+
+      function formatDate(date) {
+        if (!date) return '';
+        return date.toISOString().split('T')[0];
+      }
+
+      // Handle form submission using AJAX
+      $('#editPackageForm').submit(function (event) {
+        event.preventDefault();
+
+        // Extract form data
+        var packageId = getEntityIdFromUrl();
+        var formData = $(this).serialize();
+
+        // Submit form data using AJAX
+        $.ajax({
+          url: '<%= baseUrl %>/admin/package_management/edit_package/' + packageId,
+          type: 'POST',
+          data: formData,
+          success: function (res) {
+            if (res.success) {
+              Swal.fire({
+                position: 'top-end',
+                title: 'Success',
+                text: res.message,
+                type: 'success',
+                showConfirmButton: false,
+                timer: 2500
+              });
+              setTimeout(function(){ 
+								window.location.href = '/admin/package_management';
+							}, 2500);
+            } else {
+              Swal.fire({
+                position: 'top-end',
+                title: 'Error Occured!',
+                text: res.message,
+                type: 'error',
+                showConfirmButton: false,
+                timer: 2500
+              });
+            }
+
+          },
+          error: function (error) {
+            console.error('Error updating package:', error);
+            // Handle error appropriately
+          }
+        });
+      });
+    </script>
 </body>
+
 </html>
