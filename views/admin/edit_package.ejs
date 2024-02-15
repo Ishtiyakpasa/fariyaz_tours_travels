@@ -73,13 +73,8 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="example-fileinput" class="form-label">Upload Small Thumbnail</label>
-                    <input type="file" id="small_thumb" name="small_thumb" class="form-control" value="">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="example-fileinput" class="form-label">Upload Large Thumbnail</label>
-                    <input type="file" id="large_thumb" name="large_thumb" class="form-control" value="">
+                    <label for="example-fileinput" class="form-label">Upload Thumbnail</label>
+                    <input type="file" id="thumbnail" name="thumbnail" class="form-control" value="">
                   </div>
 
                   <div class="mb-3">
@@ -124,8 +119,7 @@
             $('#arrival_date').val(formatDate(arrivalDate));
             $('#days').val(response.days);
             $('#description').val(response.description);
-            $('#small_thumb').val(response.small_thumb);
-            $('#large_thumb').val(response.large_thumb);
+            $('#thumbnail').val(response.thumbnail);
             $('#gallary_image').val(response.gallary_image);
             // Populate other form fields similarly
           },

@@ -49,8 +49,7 @@ model packages{
   description    String
   days           Int
   departure_city String
-  small_thumb    String?
-  large_thumb    String?
+  thumbnail      String?
   gallary_image  Json?
   departure_date DateTime?
   arrival_date   DateTime?

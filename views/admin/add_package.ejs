@@ -19,8 +19,7 @@
           <div class="content">
             <div class="container">
               <div class="row mt-2">
-                <form action="<%= baseUrl %>/admin/package_management/add_package" method="post">
-
+                <form action="<%= baseUrl %>/admin/package_management/add_package" method="post" enctype="multipart/form-data">
                   <div class="mb-3">
                     <label for="simpleinput" class="form-label">Package Name</label>
                     <input type="text" id="name" name="name" class="form-control">
@@ -29,7 +28,7 @@
                   <div class="mb-3">
                     <label for="example-select" class="form-label">Package Category</label>
                     <select class="form-select" name="package_category" id="package_category">
-                      <option>Haj</option>
+                      <option>Hajj</option>
                       <option>Ummrah</option>
                     </select>
                   </div>
@@ -81,13 +80,8 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="example-fileinput" class="form-label">Upload Small Thumbnail</label>
-                    <input type="file" name="small_thumb" id="small_thumb" class="form-control">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="example-fileinput" class="form-label">Upload Large Thumbnail</label>
-                    <input type="file" name="large_thumb" id="large_thumb" class="form-control">
+                    <label for="example-fileinput" class="form-label">Upload Thumbnail</label>
+                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
                   </div>
 
                   <div class="mb-3">

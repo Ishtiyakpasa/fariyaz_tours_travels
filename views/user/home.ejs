@@ -1,11 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <%- include('common/css-link') %>
+        
+
+        <style>
+            hr { width: 70%;
+                height: 5px;
+                background-color: rgb(154, 145, 145);
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 30px;
+                /* margin-bottom: 5px; */
+
+            }
+            .more-content {
+                max-height: 150px; /* Set your desired maximum height */
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            }
+        </style>
+        
+
+<script>
+function myFunction() {
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+
+    // Toggle the "more-content" class to show/hide the additional content
+    moreText.classList.toggle("more-content");
+
+    // Check if the "more-content" class is present to determine the button text
+    if (moreText.classList.contains("more-content")) {
+        btnText.innerHTML = "Read More...";
+    } else {
+        btnText.innerHTML = "Read Less";
+    }
+}
+</script>
 </head>
+
 <body>
-    home page
+    <%- include ('common/nav') %>
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="slider-active dot-style">
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center"
+                    data-background="<%= baseUrl %>/assets/images/hero/dubai.jpg">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">WELCOME TO FARIYAZ TOURS & TRAVELS</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Guiding Your Spiritual Pilgrimage to the Heart of Islam</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+
+        <div class="container pt-5">
+            <div class="h2 text-warning text-center">About Hajj & Umrah</div>
+            <div id="more" class="more-content text-dark h5 mt-5">
+                Umrah is a pilgrimage journey that is performed by millions of Muslims from all around the world. This
+                religious journey can be performed anytime during the year. In addition, there are hundreds of travel
+                agencies that provide Umrah Packages for pilgrims.When a person performs Umrah once in a lifetime Hajj is then wajib on him/her, Above all hajj is farz for all Muslims. Umrah can be mentioned as a
+                non-mandatory religious journey. For example, People who are financially stable and who wish to wipe out
+                their sins and want to visit Makkah and Madinah with all of their heart and affection choose on
+                performing Umrah.<br>
+                <br>
+                You cannot perform Umrah during the days of Hajj. You can contact us for Best Umrah Packages Price on
+                +918268712812. Moreover, performing Umrah can give a Muslim an immense amount of advantages. This is a
+                very religious journey. Certainly, if you see the house of Allah subhanahu wa tala and worship the
+                creator of the universe, this will change your life. This self-purification journey of Umrah will remove
+                the past sins which were done intentionally or not. Most importantly, pilgrims save money from their
+                day-to-day life to perform Umrah with the best facilities. Fariyaz Tours & Travels Pvt. Ltd. carve out
+                one of the finest Umrah Packages for all pilgrims.
+            </div>
+            <div class="h4 link link-warning" onclick="myFunction()" id="myBtn">Read More...</div>
+        </div>
+        <hr>
+
+        <!-- packages Start -->
+            <div class="container pt-4">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8">
+                        <!--font-back-tittle  -->
+                        <div class="font-back-tittle mb-45">
+                            <div class="h2 text-warning text-center">Our Packages</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <!-- Package -->
+                        <div class="single-room mb-50 border shadow bg-white rounded">
+                            <div class="room-img">
+                                <a href="rooms.html"><img src="<%= baseUrl %>/assets/images/hero/dubai.jpg" alt=""></a>
+                            </div>
+                            <div class="room-caption">
+                                <h3 class="text-warning"><a href="#">Classic Double Bed</a></h3>
+                                <span class="font-weight-bold h5">Makkah Hotel     :</span>&nbsp;<span class="h5"> Hotel Classic</span>
+                                <span class="font-weight-bold h5">Departure City   :</span>&nbsp;<span class="h5"> Mumbai</span>
+                                <span class="font-weight-bold h5">Makkah Hotel     :</span>&nbsp;<span class="h5"> Hotel Classic</span>
+                                <span class="font-weight-bold h5">Package Price    :</span>&nbsp;<span class="h5"> 150<span class="h5"> INR</span></span>
+                                <div class="mt-3">
+                                    <div class="btn btn-warning text-light">Book Now</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- packages End -->
+        <hr>
+
+        
+            <div class="container pt-5 pb-5">
+                <div class="h2 text-warning text-center">About Fariyaz Tours & Travels</div>
+                <div id="more" class="more-content text-dark h5 mt-5">
+                    Umrah is a pilgrimage journey that is performed by millions of Muslims from all around the world. This
+                    religious journey can be performed anytime during the year. In addition, there are hundreds of travel
+                    agencies that provide Umrah Packages for pilgrims.When a person performs Umrah once in a lifetime Hajj is then wajib on him/her, Above all hajj is farz for all Muslims. Umrah can be mentioned as a
+                    non-mandatory religious journey. For example, People who are financially stable and who wish to wipe out
+                    their sins and want to visit Makkah and Madinah with all of their heart and affection choose on
+                    performing Umrah.<br>
+                    <br>
+                    You cannot perform Umrah during the days of Hajj. You can contact us for Best Umrah Packages Price on
+                    +918268712812. Moreover, performing Umrah can give a Muslim an immense amount of advantages. This is a
+                    very religious journey. Certainly, if you see the house of Allah subhanahu wa tala and worship the
+                    creator of the universe, this will change your life. This self-purification journey of Umrah will remove
+                    the past sins which were done intentionally or not. Most importantly, pilgrims save money from their
+                    day-to-day life to perform Umrah with the best facilities. Fariyaz Tours & Travels Pvt. Ltd. carve out
+                    one of the finest Umrah Packages for all pilgrims.
+                </div>
+                <div class="h4 link link-warning" onclick="myFunction()" id="myBtn">Read More...</div>
+            </div>
+        
+
+                <%- include ('common/footer') %>
+
+
+                <%- include ('common/script-link') %>
+
+        
 </body>
+
 </html>

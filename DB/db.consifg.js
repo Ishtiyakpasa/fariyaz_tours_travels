@@ -1,9 +1,19 @@
 const { PrismaClient } = require('@prisma/client')
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  log: ['query'],
+});
+
+prisma.$on("query", (event) => {
+  const queryEvent = event;
+
+  console.log("Query:", queryEvent.query);
+  console.log("Params:", queryEvent.params);
+  console.log("Duration:", queryEvent.duration + "ms");
+});
 
 async function main() {
-  // ... you will write your Prisma Client queries here
+  // Your Prisma Client queries go here
 }
 
 main()

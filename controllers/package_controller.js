@@ -34,8 +34,21 @@ async function getAllPackageData(req, res) {
 
 async function createPackage(req, res) {
   console.log('req body---->', req.body);
-  const { name, description, days, departure_city, small_thumb, large_thumb, gallary_image, departure_date, arrival_date, adult_price, child_price, hotel_distence, hotel, package_category } = req.body;
-  
+  const { name, description, days, departure_city , gallary_image, departure_date, arrival_date, adult_price, child_price, hotel_distence, hotel, package_category } = req.body;
+  console.log(req.files);
+  const thumbnail = req.file ? req.file.filename : null;
+
+  const existingPackage = await prisma.packages.findUnique({
+    where: {
+      name: name // Check if a package with the same name already exists
+    }
+  });
+
+  if (existingPackage) {
+    return res.status(400).json({ error: 'A package with the same name already exists.' });
+  }
+
+
   try {
     const newPackage = await prisma.packages.create({
       data: {
@@ -43,8 +56,7 @@ async function createPackage(req, res) {
         description,
         days: parseInt(days, 10),
         departure_city,
-        small_thumb,
-        large_thumb,
+        thumbnail,
         gallary_image,
         departure_date: new Date(departure_date).toISOString(),
         arrival_date: new Date(arrival_date).toISOString(),
@@ -85,8 +97,7 @@ async function updatePackage(req, res) {
     description,
     days,
     departure_city,
-    small_thumb,
-    large_thumb,
+    thumbnail,
     gallary_image,
     departure_date,
     arrival_date,
@@ -113,8 +124,7 @@ async function updatePackage(req, res) {
         description,
         days: parseInt(days, 10),
         departure_city,
-        small_thumb,
-        large_thumb,
+        thumbnail,
         gallary_image,
         departure_date: parsedDepartureDate,
         arrival_date: parsedArrivalDate,

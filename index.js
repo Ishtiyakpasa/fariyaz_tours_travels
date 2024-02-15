@@ -8,7 +8,10 @@ const expressLayouts = require('express-ejs-layouts');
 const upload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 // const bodyParser = require('body-parser');
+const multer = require('multer');
 app.set('view engine','ejs')
+
+ // Set destination folder
 
 // Middleware to set base URL
 app.use((req, res, next) => {
@@ -25,6 +28,7 @@ app.use(
     cookie: { secure: false }, // Set to true if using HTTPS
   })
 );
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
