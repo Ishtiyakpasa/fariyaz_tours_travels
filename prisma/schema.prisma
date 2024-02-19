@@ -68,10 +68,8 @@ model packages{
 model contact_us{
   id        Int      @id @default(autoincrement())
   name      String
-  email     String
-  subject   String
+  email     String  @unique
   message   String
-  conatct   Int
   city      String
   createdAt DateTime @default(now())
 }

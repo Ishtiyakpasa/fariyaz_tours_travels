@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <link rel="manifest" href="site.webmanifest">
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
     <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="<%= baseUrl %>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -55,18 +55,23 @@
         <div class="row justify-content-center">
             <div class="col-md-6 border border-dark mb-3">
                 <h2 class="mt-3 mb-4 text-warning text-center">Contact Us</h2>
-                <form>
+                <form id="sentMessage" action="<%= baseUrl %>/user/contact" method="post" onsubmit="return validateForm()">
                     <div class="mb-3">
                         <label for="name" class="form-label form-control-lg">Your Name</label>
-                        <input type="text" class="form-control form-control-lg" id="name" placeholder="Enter your name">
+                        <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Enter your name" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label form-control-lg">Your Email</label>
-                        <input type="email" class="form-control form-control-lg" id="email" placeholder="Enter your email">
+                        <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email" required>
+                        <div id="emailError" class="invalid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label form-control-lg">City</label>
+                        <input type="text" class="form-control form-control-lg" name="city" id="city" placeholder="Enter your name" required>
                     </div>
                     <div class="mb-3 ">
                         <label for="message" class="form-label form-control-lg">Message</label>
-                        <textarea class="form-control form-control-lg" id="message" rows="5" placeholder="Enter your message"></textarea>
+                        <textarea class="form-control form-control-lg" id="message" rows="5" name="message" placeholder="Enter your message" required></textarea>
                     </div>
                     <div class=" mb-3 text-center"> <!-- Aligns the button to the center -->
                         <button type="submit" class="btn btn-warning text-light">Submit</button>
@@ -82,5 +87,43 @@
 
     <%- include ('common/footer') %>
             <%- include ('common/script-link') %>
+
+    <script>
+    function validateForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const city = document.getElementById('city').value;
+    const message = document.getElementById('message').value;
+
+    // Your validation logic here
+    if (!name || !email || !city || !message) {
+        alert('All fields are required.');
+        return false;
+    }
+
+    // Perform AJAX request to check email uniqueness
+    // Replace '/check_email' with your backend route to check email uniqueness
+    fetch('<%= baseUrl %>/user/check_email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.unique) {
+            document.getElementById('emailError').innerHTML = 'Email already exists.';
+            return false;
+        }
+        return true;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        return false;
+    });
+}
+
+    </script>
 </body>
 </html>

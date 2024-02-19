@@ -66,9 +66,7 @@ CREATE TABLE "contact_us" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "subject" TEXT NOT NULL,
     "message" TEXT NOT NULL,
-    "conatct" INTEGER NOT NULL,
     "city" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -83,6 +81,9 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "packages_name_key" ON "packages"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "contact_us_email_key" ON "contact_us"("email");
 
 -- AddForeignKey
 ALTER TABLE "bookings" ADD CONSTRAINT "bookings_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

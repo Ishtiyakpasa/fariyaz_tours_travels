@@ -33,9 +33,9 @@ async function getAllPackageData(req, res) {
 }
 
 async function createPackage(req, res) {
-  console.log('req body---->', req.body);
+  // console.log('req body---->', req.body);
   const { name, description, days, departure_city , gallary_image, departure_date, arrival_date, adult_price, child_price, hotel_distence, hotel, package_category } = req.body;
-  console.log(req.files);
+  // console.log(req.files);
   const thumbnail = req.file ? req.file.filename : null;
 
   const existingPackage = await prisma.packages.findUnique({
