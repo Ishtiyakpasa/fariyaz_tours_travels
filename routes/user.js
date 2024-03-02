@@ -21,6 +21,10 @@ router.get('/contact_us', function (req, res){
     res.render('user/contact_us')
 })
 
+router.get('/book_package', function(req, res){
+    res.render('user/book_package')
+})
+
 // Route to check email uniqueness
 router.post('/check_email', async (req, res) => {
     const { email } = req.body;
