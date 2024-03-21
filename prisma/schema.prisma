@@ -26,11 +26,13 @@ model user{
   updatedAt DateTime @updatedAt
   deletedAt DateTime 
   status    Int @default(1)
-  bookings  bookings[]
+  // bookings  bookings[]
 }
 
 model bookings{
    id              Int     @id @default(autoincrement())
+   name            String
+   email           String
    adult_count     Int
    child_count     Int
    contact         Int
@@ -39,7 +41,10 @@ model bookings{
    city            String
    user_id         Int      
    package_id      Int
-   user            user? @relation(fields: [user_id], references: [id])
+   passport_upload String?
+   adhar_upload    String?
+  
+  //  user            user? @relation(fields: [user_id], references: [id])
    packages         packages? @relation(fields: [package_id], references: [id])
 }
 
@@ -56,12 +61,14 @@ model packages{
   adult_price    Float @default(0.00)
   child_price    Float @default(0.00)
   hotel_distence Int
+  meal           String
+  baggage        String
   createdAt      DateTime @default(now())
   updatedAt      DateTime? @updatedAt
   deletedAt      DateTime? 
   status         Int @default(1)
   hotel          String
-  bookings        bookings[]
+  bookings       bookings[]
   package_category String
 }
 

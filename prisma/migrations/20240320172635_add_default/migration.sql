@@ -25,6 +25,8 @@ CREATE TABLE "user" (
 -- CreateTable
 CREATE TABLE "bookings" (
     "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "adult_count" INTEGER NOT NULL,
     "child_count" INTEGER NOT NULL,
     "contact" INTEGER NOT NULL,
@@ -33,6 +35,8 @@ CREATE TABLE "bookings" (
     "city" TEXT NOT NULL,
     "user_id" INTEGER NOT NULL,
     "package_id" INTEGER NOT NULL,
+    "passport_upload" TEXT,
+    "adhar_upload" TEXT,
 
     CONSTRAINT "bookings_pkey" PRIMARY KEY ("id")
 );
@@ -51,6 +55,8 @@ CREATE TABLE "packages" (
     "adult_price" DOUBLE PRECISION NOT NULL DEFAULT 0.00,
     "child_price" DOUBLE PRECISION NOT NULL DEFAULT 0.00,
     "hotel_distence" INTEGER NOT NULL,
+    "meal" TEXT NOT NULL,
+    "baggage" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
     "deletedAt" TIMESTAMP(3),
@@ -84,9 +90,6 @@ CREATE UNIQUE INDEX "packages_name_key" ON "packages"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "contact_us_email_key" ON "contact_us"("email");
-
--- AddForeignKey
-ALTER TABLE "bookings" ADD CONSTRAINT "bookings_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "bookings" ADD CONSTRAINT "bookings_package_id_fkey" FOREIGN KEY ("package_id") REFERENCES "packages"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

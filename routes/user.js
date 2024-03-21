@@ -3,6 +3,10 @@ const router = express.Router()
 const hajjController = require('../controllers/hajj_controller');
 const umrahController = require('../controllers/umrah_controller');
 const Message = require('../controllers/contact_controller');
+const package_controller = require('../controllers/package_controller');
+const info_controller = require('../controllers/info_controller');
+const booking_controller= require('../controllers/booking_controller');
+const upload= require('../middlewares/booking_multer');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -21,8 +25,12 @@ router.get('/contact_us', function (req, res){
     res.render('user/contact_us')
 })
 
-router.get('/book_package', function(req, res){
+router.get('/book_package/:id', function(req, res){
     res.render('user/book_package')
+})
+
+router.get('/package_info/:id', function(req, res){
+    res.render('user/package_info')
 })
 
 // Route to check email uniqueness
@@ -54,10 +62,19 @@ router.post('/check_email', async (req, res) => {
 //   });
   
 
-// <!-- controller routeer -->
+// <!-- controller route -->
 router.get('/packages/hajj', hajjController. getHajjPackages);
 router.get('/packages/umrah', umrahController. getUmrahPackages);
 router.post('/contact', Message.createMessage)
 
+// booking controller route
+router.get('/get_package/:id', package_controller.getPackage);
+router.get('/get_info/:id', info_controller.getDetailinfo);
+
+//booking controller
+router.post('/booking_controller',upload.fields([
+    { name: 'passport_upload', maxCount: 1 }, // For single file upload
+    { name: 'adhar_upload', maxCount: 1 }      // For single file upload
+  ]), booking_controller.createBooking);
 
 module.exports=router

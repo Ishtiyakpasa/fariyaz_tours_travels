@@ -29,6 +29,16 @@
                   </div>
 
                   <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Baggage Allowance</label>
+                    <input type="text" id="baggage" name="baggage" class="form-control" value="">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Meal Provided</label>
+                    <input type="text" id="meal" name="meal" class="form-control" value="">
+                  </div>
+
+                  <div class="mb-3">
                     <label for="example-select" class="form-label">Package Category</label>
                     <select class="form-select" id="package_category" name="package_category" value="">
                       <option>Hajj</option>
@@ -112,6 +122,8 @@
             // Populate form fields with the fetched data
             $('#name').val(response.name);
             $('#package_category').val(response.package_category);
+            $('#baggage').val(response.baggage);
+            $('#meal').val(response.meal);
             $('#departure_city').val(response.departure_city);
             $('#adult_price').val(response.adult_price);
             $('#child_price').val(response.child_price);

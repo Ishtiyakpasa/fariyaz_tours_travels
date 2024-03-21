@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Umrah</title>
     <link rel="manifest" href="site.webmanifest">
-	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<%= baseUrl %>/assets/images/android-chrome-192x192.png">
     <%- include('common/css-link') %>
 </head>
 <body>
@@ -70,23 +70,24 @@
                         const packageContainer = document.getElementById("packageContainer");
                         data.forEach(package => {
                              let packageCard = `
-                                <div class="col-xl-4 col-lg-6 col-md-6">
-                                    <div class="single-room mb-50 border shadow bg-white rounded">
-                                        <div class="room-img">
-                                            <a href="rooms.html"><img src="${package.thumbnail}" alt="${package.name}"></a>
-                                        </div>
-                                        <div class="room-caption">
-                                            <h3 class="text-warning"><a href="#">${package.name}</a></h3>
-                                            <span class="font-weight-bold h5">Hotel : </span>&nbsp;<span class="h5">${package.hotel}</span><br>
-                                            <span class="font-weight-bold h5">Departure : </span>&nbsp;<span class="h5">${package.departure_city}</span><br>
-                                            <span class="font-weight-bold h5">Adult Price: </span>&nbsp;<span class="h5">${package.adult_price}</span><br>
-                                            <span class="font-weight-bold h5">Child Price: </span>&nbsp;<span class="h5">${package.child_price}</span>
-                                            <div class="mt-3">
-                                                <a href="#" class="btn btn-warning text-light">Book Now</a>
-                                            </div>
+                             <div class="col-xl-4 col-lg-6 col-md-6">
+                                <div class="single-room mb-50 border shadow bg-white rounded">
+                                    <div class="room-img">
+                                        <a href="rooms.html"><img src="<%= baseUrl %>/assets/images/thumbnails/${package.thumbnail}" alt="${package.name}"></a>
+                                    </div>
+                                    <div class="room-caption">
+                                        <h3 class="text-warning"><a href="#">${package.name}</a></h3>
+                                        <span class="font-weight-bold h5">Hotel : </span>&nbsp;<span class="h5">${package.hotel}</span><br>
+                                        <span class="font-weight-bold h5">Departure : </span>&nbsp;<span class="h5">${package.departure_city}</span><br>
+                                        <span class="font-weight-bold h5">Adult Price: </span>&nbsp;<span class="h5">${package.adult_price}</span><br>
+                                        <span class="font-weight-bold h5">Child Price: </span>&nbsp;<span class="h5">${package.child_price}</span>
+                                        <div class="mt-3">
+                                            <a href="<%= baseUrl %>/user/package_info/${package.id}" class="text-warning h5">Read More</a>
+                                            <a href="<%= baseUrl %>/user/book_package/${package.id}" class="mx-4 btn btn-warning text-light">Book Now</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                                 `;
                             packageContainer.innerHTML += packageCard;
                         });

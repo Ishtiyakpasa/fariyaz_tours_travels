@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<%= baseUrl %>/assets/images/android-chrome-192x192.png">
     <%- include('common/css-link') %>
     <style>
         input::placeholder {
@@ -39,18 +39,18 @@
        <div class="row justify-content-center">
            <div class="col-md-6 border border-dark mb-3">
             <h2 class="mt-3 mb-4 text-warning text-center">Book Package</h2>
-               <form id="sentMessage" action="" method="post" onsubmit="return validateForm()">
+               <form id="sentMessage" action="<%= baseUrl %>/user/booking_controller" method="post" enctype="multipart/form-data">
                    <div class="mb-3">
                        <label for="name" class="form-label form-control-lg">Package Name</label>
-                       <input type="text" class="form-control form-control-lg " name="name" id="name" required>
+                       <input type="text" class="form-control form-control-lg " name="name" id="package_name" readonly>
                    </div>
                    <div class="mb-3">
                        <label for="name" class="form-label form-control-lg">Your Name</label>
                        <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Enter your name" required>
                    </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label form-control-lg">Contact Number</label>
-                        <input type="number" class="form-control form-control-lg" name="name" id="name" placeholder="Enter your contact number" required>
+                        <label for="number" class="form-label form-control-lg">Contact Number</label>
+                        <input type="number" class="form-control form-control-lg" name="contact" id="contact" placeholder="Enter your contact number" required>
                     </div>
                    <div class="mb-3">
                        <label for="email" class="form-label form-control-lg">Your Email</label>
@@ -58,24 +58,28 @@
                        <div id="emailError" class="invalid-feedback"></div>
                    </div>
                    <div class="mb-3">
-                       <label for="name" class="form-label form-control-lg">City</label>
-                       <input type="text" class="form-control form-control-lg" name="city" id="city" placeholder="Enter your City" required>
+                        <label for="city" class="form-label form-control-lg">State</label>
+                        <input type="text" class="form-control form-control-lg" name="state" id="state" placeholder="Enter your state" required>
+                    </div>
+                   <div class="mb-3">
+                       <label for="city" class="form-label form-control-lg">City</label>
+                       <input type="text" class="form-control form-control-lg" name="city" id="city" placeholder="Enter your city" required>
                    </div>
                    <div class="mb-3">
                        <label for="name" class="form-label form-control-lg">Adults</label>
-                       <input type="number" class="form-control form-control-lg" id="quantity" name="quantity" value="0" required>
+                       <input type="number" class="form-control form-control-lg" id="adult_count" name="adult_count" value="0" required>
                    </div>
                    <div class="mb-3">
                         <label for="name" class="form-label form-control-lg">Childs</label>
-                        <input type="number" class="form-control form-control-lg" id="quantity" name="quantity" value="0" required>
+                        <input type="number" class="form-control form-control-lg" id="child_count" name="child_count" value="0" required>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label form-control-lg">Upload Passport</label>
-                        <input type="file" class="form-control form-control-lg" id="image" name="image" required>
+                        <label for="image" class="form-label form-control-lg">Upload Passport</label>
+                        <input type="file" class="form-control form-control-lg" id="passport_upload" name="passport_upload" required>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label form-control-lg">Upload Adhar</label>
-                        <input type="file" class="form-control form-control-lg" id="image" name="image" required>
+                        <label for="image" class="form-label form-control-lg">Upload Adhar</label>
+                        <input type="file" class="form-control form-control-lg" id="adhar_upload" name="adhar_upload" required>
                     </div>
                    <div class=" mb-3 text-center"> <!-- Aligns the button to the center -->
                        <button type="submit" class="btn btn-warning text-light">Submit</button>
@@ -84,11 +88,33 @@
            </div>
        </div>
    </div>
-                <%- include ('common/footer') %>
+            <%- include ('common/footer') %>
 
+            <%- include ('common/script-link') %>
 
-                <%- include ('common/script-link') %>
+            <!-- Dashboar 1 init js-->
+    <script src="<%= baseUrl %>/assets/js/get_entity_id.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script>
 
+   <script>
+    $(document).ready(function () {
+        var packageId = getEntityIdFromUrl();
+        var apiUrl = '<%= baseUrl %>/user/get_package/' + packageId;
+
+        $.ajax({
+          url: apiUrl,
+          type: 'GET',
+          dataType: 'json',
+          success: function (response) {
+            $('#package_name').val(response.name);
+          },
+          error: function (error) {
+            console.error('Error fetching package details:', error);
+            // Handle error appropriately
+          }
+        });
+      });
+   </script>
         
 </body>
 

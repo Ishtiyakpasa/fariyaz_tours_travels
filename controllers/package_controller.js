@@ -34,7 +34,7 @@ async function getAllPackageData(req, res) {
 
 async function createPackage(req, res) {
   // console.log('req body---->', req.body);
-  const { name, description, days, departure_city , gallary_image, departure_date, arrival_date, adult_price, child_price, hotel_distence, hotel, package_category } = req.body;
+  const { name, description, days, departure_city , gallary_image, departure_date, arrival_date, adult_price, child_price, hotel_distence, hotel, baggage, meal, package_category } = req.body;
   // console.log(req.files);
   const thumbnail = req.file ? req.file.filename : null;
 
@@ -64,6 +64,8 @@ async function createPackage(req, res) {
         child_price: parseFloat(child_price),
         hotel_distence: parseInt(days, 10),
         hotel,
+        baggage,
+        meal,
         package_category
       },
     });
@@ -105,6 +107,8 @@ async function updatePackage(req, res) {
     child_price,
     hotel_distence,
     hotel,
+    baggage,
+    meal,
     package_category
   } = req.body;
 
@@ -132,6 +136,8 @@ async function updatePackage(req, res) {
         child_price: parseFloat(child_price),
         hotel_distence: parseInt(days, 10),
         hotel,
+        baggage,
+        meal,
         package_category
       },
     });  
