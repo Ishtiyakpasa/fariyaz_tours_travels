@@ -87,5 +87,6 @@ router.post('/booking_controller',upload.fields([
     { name: 'passport_upload', maxCount: 1 }, // For single file upload
     { name: 'adhar_upload', maxCount: 1 }      // For single file upload
   ]), booking_controller.createBooking);
+
   router.get('/displayBookingDetails/:id', booking_controller.displayBookingDetails);
 module.exports=router

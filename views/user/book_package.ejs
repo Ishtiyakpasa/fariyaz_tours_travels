@@ -42,7 +42,7 @@
             <form id="sentMessage" name="sentMessage" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label form-control-lg">Package Name</label>
-                    <input type="text" class="form-control form-control-lg" name="name" id="package_name" readonly required>
+                    <input type="text" class="form-control form-control-lg" name="name" id="package_name" readonly >
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label form-control-lg">Your Name</label>
@@ -116,6 +116,7 @@
         });
       });
    </script>
+
    <script>
    $(document).ready(function() {
     $('#sentMessage').submit(function(event) {

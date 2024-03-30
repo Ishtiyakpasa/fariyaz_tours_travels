@@ -80,7 +80,7 @@ async function getPackage(req, res){
   const packageId = parseInt(req.params.id, 10);
 
     try {
-      const packageDetails = await prisma.packages.findMany({
+      const packageDetails = await prisma.packages.findFirst({
         where: { id: packageId },
       });
       
