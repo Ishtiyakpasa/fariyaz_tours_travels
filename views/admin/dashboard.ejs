@@ -4,6 +4,7 @@
     <%- include('common/title-meta') %>
     <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <%- include('common/head-css') %>
 </head>
 <body>
@@ -27,11 +28,8 @@
                                                         <i class="mdi mdi-calendar-range"></i>
                                                     </span>
                                                 </div>
-                                                <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-2">
+                                                <a href="<%= baseUrl %>/admin" class="btn btn-blue btn-sm ms-2">
                                                     <i class="mdi mdi-autorenew"></i>
-                                                </a>
-                                                <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-1">
-                                                    <i class="mdi mdi-filter-variant"></i>
                                                 </a>
                                             </form>
                                         </div>
@@ -53,10 +51,10 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="text-end">
-                                                        <h3 class="text-dark mt-1">
-                                                            <span data-plugin="counterup">0</span>
+                                                        <h3 class="text-dark mt-1" id="totalCustomers">
+                                                            <span data-plugin="counterup"><span>0</span></span>
                                                         </h3>
-                                                        <p class="text-muted mb-1 text-truncate">Total Users</p>
+                                                        <p class="text-muted mb-1 text-truncate">Total Customers</p>
                                                     </div>
                                                 </div>
                                             </div> <!-- end row-->
@@ -76,10 +74,10 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="text-end">
-                                                        <h3 class="text-dark mt-1">
-                                                            <span data-plugin="counterup">0</span>
+                                                        <h3 class="text-dark mt-1" id="totalPackages">
+                                                            
                                                         </h3>
-                                                        <p class="text-muted mb-1 text-truncate">Total Bookings</p>
+                                                        <p class="text-muted mb-1 text-truncate">Total Packages</p>
                                                     </div>
                                                 </div>
                                             </div> <!-- end row-->
@@ -100,10 +98,10 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="text-end">
-                                                        <h3 class="text-dark mt-1">
-                                                            <span data-plugin="counterup">0</span>
+                                                        <h3 class="text-dark mt-1" id="totalMessages">
+                                                            
                                                         </h3>
-                                                        <p class="text-muted mb-1 text-truncate">Total Cancels</p>
+                                                        <p class="text-muted mb-1 text-truncate">Total Messages</p>
                                                     </div>
                                                 </div>
                                             </div> <!-- end row-->
@@ -114,83 +112,7 @@
                                
                             <!-- end row-->
 
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="dropdown float-end">
-                                                <a href="#" class="dropdown-toggle arrow-none card-drop"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="mdi mdi-dots-vertical"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <!-- item-->
-                                                    <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                                    <!-- item-->
-                                                    <a href="javascript:void(0);" class="dropdown-item">Export
-                                                        Report</a>
-                                                    <!-- item-->
-                                                    <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                                    <!-- item-->
-                                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="header-title mb-0">Total Revenue</h4>
-
-                                            <div class="widget-chart text-center" dir="ltr">
-
-                                                <div id="total-revenue" class="mt-0" data-colors="#f1556c"></div>
-
-                                                <h5 class="text-muted mt-0">Total sales made today</h5>
-                                                <h2>0</h2>
-
-                                                <p class="text-muted w-75 mx-auto sp-line-2">Traditional heading
-                                                    elements are designed to work best in the meat of your page content.
-                                                </p>
-
-                                                <div class="row mt-3">
-                                                    <div class="col-4">
-                                                        <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-                                                        <h4><i class="fe-arrow-down text-danger me-1"></i>0</h4>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-                                                        <h4><i class="fe-arrow-up text-success me-1"></i>0</h4>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-                                                        <h4><i class="fe-arrow-down text-danger me-1"></i>0</h4>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div> <!-- end card -->
-                                </div> <!-- end col-->
-
-                                <div class="col-lg-8">
-                                    <div class="card">
-                                        <div class="card-body pb-2">
-                                            <div class="float-end d-none d-md-inline-block">
-                                                <div class="btn-group mb-2">
-                                                    <button type="button" class="btn btn-xs btn-light">Today</button>
-                                                    <button type="button" class="btn btn-xs btn-light">Weekly</button>
-                                                    <button type="button"
-                                                        class="btn btn-xs btn-secondary">Monthly</button>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="header-title mb-3">Sales Analytics</h4>
-
-                                            <div dir="ltr">
-                                                <div id="sales-analytics" class="mt-4" data-colors="#1abc9c,#4a81d4">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- end card -->
-                                </div> <!-- end col-->
-                            </div>
+                            
                             <!-- end row -->
 
 
@@ -204,11 +126,37 @@
     <%- include ('common/footer-scripts') %>
     <!-- Plugins js-->
     <script src="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.js"></script>
-    <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <!-- <script src="<%= baseUrl %>/assets/libs/apexcharts/apexcharts.min.js"></script> -->
     <script src="<%= baseUrl %>/assets/libs/selectize/js/standalone/selectize.min.js"></script>
 
     <!-- Dashboar 1 init js-->
-    <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
+    <!-- <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script> -->
+
+    <script>
+        // Fetch statistics using AJAX
+        $(document).ready(function() {
+            getDashboard();
+    });
+
+    function getDashboard() {
+        console.log('ishtiyak')
+        $.ajax({
+            url: '<%= baseUrl %>/admin/dashboard/total',
+            type: 'GET',
+            dataType:'json',
+            success: function(data) {
+                // Update HTML elements with fetched data
+                $('#totalCustomers').html('<span data-plugin="counterup"><span>'+data.totalCustomers+'</span></span>');
+                $('#totalPackages').html('<span data-plugin="counterup"><span >'+data.totalPackages+'</span></span>');
+                $('#totalMessages').html('<span data-plugin="counterup"><span >'+data.totalMessages+'</span></span>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching statistics:', error);
+            }
+        });
+    }
+
+    </script>
     
 </body>
 </html>

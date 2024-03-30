@@ -4,6 +4,7 @@ const package_controller = require('../controllers/package_controller')
 const authMiddleware = require('../middlewares/auth_middlewares')
 const login_controller = require('../controllers/login_controller')
 const booking_controller = require('../controllers/booking_controller')
+const info_controller = require('../controllers/info_controller')
 const upload = require('../middlewares/multerconfig');
 const contact_controller = require('../controllers/contact_controller')
 
@@ -49,6 +50,9 @@ router.post('/upload', upload.single('thumbnail'), (req, res) => {
     // Now req.file should contain the uploaded file
     console.log(req.file);
   });
+
+//dashboard controller
+router.get('/dashboard/total', info_controller.getStatistics)
 
 //route for contact
 router.get('/message/data', contact_controller.getAllContactData);

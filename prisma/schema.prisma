@@ -80,6 +80,3 @@ model contact_us{
   city      String
   createdAt DateTime @default(now())
 }
-
-
-

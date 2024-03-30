@@ -22,6 +22,31 @@ async function getDetailinfo(req, res) {
     }
 }
 
+//total of all tables
+async function getStatistics(req, res) {
+    try {
+        // Fetch total number of customers
+        const totalCustomers = await prisma.bookings.count();
+
+        // Fetch total number of packages
+        const totalPackages = await prisma.packages.count();
+
+        // Fetch total number of messages
+        const totalMessages = await prisma.contact_us.count();
+
+        // Send statistics as JSON response
+        // console.log('Total customers:', totalCustomers);
+        // console.log('Total packages:', totalPackages);
+        // console.log('Total messages:', totalMessages);
+        res.status(200).json({ totalCustomers, totalPackages, totalMessages });
+    } catch (error) {
+        console.error('Error fetching statistics:', error);
+        // Send error response
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 module.exports ={
-    getDetailinfo
+    getDetailinfo,
+    getStatistics
 }
