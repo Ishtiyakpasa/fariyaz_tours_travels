@@ -224,7 +224,7 @@ function delete_row(id)
             if (isConfirm)
             {
                 $.ajax({
-                    url : "<%= baseUrl %>/admin/package_management/delete_package/" + id,
+                    url : "<%= baseUrl %>/admin/delete_package/" + id,
                     type: "DELETE",
                     dataType: "JSON",
                     data: {

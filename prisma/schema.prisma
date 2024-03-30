@@ -31,19 +31,19 @@ model user{
 
 model bookings{
    id              Int     @id @default(autoincrement())
-   name            String
+  //  bookingid       Int
+   customer_name   String
    email           String
    adult_count     Int
    child_count     Int
-   contact         Int
+   contact         String
    total_price     Float
    state           String
    city            String
-   user_id         Int      
+  //  user_id         Int      
    package_id      Int
-   passport_upload String?
-   adhar_upload    String?
-  
+   passport_upload String ?
+   adhar_upload    String ?
   //  user            user? @relation(fields: [user_id], references: [id])
    packages         packages? @relation(fields: [package_id], references: [id])
 }

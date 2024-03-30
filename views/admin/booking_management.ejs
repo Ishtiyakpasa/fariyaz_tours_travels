@@ -11,6 +11,8 @@
     <link href="<%= baseUrl %>/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css"/>
     <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="<%= baseUrl %>/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <%- include('common/head-css') %>
 </head>
 <body>
@@ -28,6 +30,7 @@
                                             <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                                                 <thead>
                                                     <tr>
+                                                        <th></th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
@@ -61,6 +64,12 @@
     <!-- Dashboar 1 init js-->
     <script src="<%= baseUrl %>/assets/js/pages/dashboard-1.init.js"></script>
     <!--including files for responsive table-->
+
+    <!-- DataTables script -->
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script>
+
+
 	<script src="<%= baseUrl %>/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="<%= baseUrl %>/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="<%= baseUrl %>/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
@@ -74,5 +83,190 @@
 	<script src="<%= baseUrl %>/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 	<script src="<%= baseUrl %>/assets/libs/pdfmake/build/pdfmake.min.js"></script>
 	<script src="<%= baseUrl %>/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+
+    <script>
+        // $('#basic-datatable').dataTable().fnDestroy();
+        var handleDataTableButtons = function() {
+        "use strict";
+        0 !== $("#basic-datatable").length && $("#basic-datatable").DataTable({
+            bProcessing: true,
+            ajax: {
+                url: '<%= baseUrl %>/admin/getbookings',
+                type: "GET",
+                dataType:'json'
+            },
+            dom: "Bfrtip",
+            // serverSide: true,
+            lengthMenu: [
+                [ 10, 25, 50, -1 ],
+                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+            ],
+            buttons: [
+                {
+                    extend: "pageLength",
+                    className: "btn-sm"
+                },
+                // {
+                // extend: "copy",
+                // className: "btn-sm"
+                // },
+                // {
+                //     extend: "csv",
+                //     className: "btn-sm"
+                // } 
+            ],
+            aoColumns       : [
+            {
+                mData       : "id",
+                sName       : "id", 
+                sTitle      : "Sr No." ,
+                searchable  : false,
+                orderable   : false,
+                targets     : 0
+            },
+            {
+                mData       : "customer_name",
+                sName       : "customer_name", 
+                sTitle      : "Customer Name" ,
+                searchable  : true,
+                orderable   : true,
+            },
+            {
+                mData       : "adult_count", // database coloum name
+                sName       : "adult_count", // database coloum name
+                sTitle      : "No. of adult", //HTML column name(Title)
+                searchable  : true,
+                orderable   : true
+            },
+            {
+                mData       : "child_count", // database coloum name
+                sName       : "child_count", // database coloum name
+                sTitle      : "No. of child", //HTML column name(Title)
+                searchable  : true,
+                orderable   : true
+            },
+            {
+                mData       : "city",
+                sName       : "city", 
+                sTitle      : "City" ,
+                searchable  : true,
+                orderable   : true,
+            },
+            {
+                mData       : "contact",
+                sName       : "contact", 
+                sTitle      : "Contact" ,
+                searchable  : true,
+                orderable   : true,
+            },
+            {
+                mData: "id", //database coloum name
+                sTitle: "Action", //HTML column name(Title)
+                searchable  : false,
+                orderable   : false,
+                targets     : 0,
+                mRender: function ( data , type, row )
+                {
+                 let delete_access = 1;
+                 if(delete_access == 1){
+                    return  '<a href="javascript:delete_row('+row.id+');" class="btn btn-danger btn-xs delete_menu" style="margin-right: 0px;" data-landing-id='+row.id+'>Remove</a>';
+                }else{
+                    return 'NA';
+                }
+                }
+            }
+            ],
+            fnDrawCallback: function ( oSettings ) {
+                for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+                {
+                    $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( oSettings._iDisplayStart+i+1 );
+                }
+            },
+            order: [[ 2, 'desc' ]],
+            // autoWidth :true,
+        })
+    },
+    
+    TableManageButtons = function() {
+        "use strict";
+        return {
+            init: function() {
+                handleDataTableButtons()
+            }
+        }
+    }();
+    $("#basic-datatable thead th input[type=text]").on( 'keyup change', function () {
+        $("#basic-datatable").DataTable()
+        .search(this.value )
+        .draw();
+        
+    });
+    
+    function delete_row(id)
+    {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this record?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            preConfirm: function (isConfirm) 
+            {
+                if (isConfirm)
+                {
+                    $.ajax({
+                        url : "<%= baseUrl %>/admin/delete_booking/" + id,
+                        type: "DELETE",
+                        dataType: "JSON",
+                        data: {
+                            id : id
+                        },
+                        success: function (res) {
+                            if(res.success){
+                                Swal.fire({
+                                    position: 'top-end',
+                                    title: 'Success',
+                                    text: res.message,
+                                    type: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                });
+                                $("#basic-datatable").DataTable().ajax.reload();
+                            }else
+                            {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    title: 'Error Occured!',
+                                    text: res.message,
+                                    type: 'error',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                });
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            Swal.fire({
+                                position: 'top-end',
+                                title: 'Error deleting!',
+                                text: "Please try again",
+                                type: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }   
+    
+    </script>
+    <script>
+         $(document).ready(function() {
+                TableManageButtons.init();
+            });
+    </script>
 </body>
 </html>

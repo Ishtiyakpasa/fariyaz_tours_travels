@@ -80,11 +80,12 @@ async function getPackage(req, res){
   const packageId = parseInt(req.params.id, 10);
 
     try {
-      const packageDetails = await prisma.packages.findUnique({
+      const packageDetails = await prisma.packages.findMany({
         where: { id: packageId },
       });
       
       res.json(packageDetails);
+      console.log('packageDetails', packageDetails)
     } catch (error) {
       console.error('Error fetching package details:', error);
       res.status(500).json({ error: 'Internal Server Error' });

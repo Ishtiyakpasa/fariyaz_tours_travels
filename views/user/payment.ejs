@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Info</title>
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="<%= baseUrl %>/assets/images/android-chrome-192x192.png">
+    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%= baseUrl %>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <%- include('common/css-link') %>
+</head>
+<body>
+    
+    <div id="packageContainer" class="container">
+        
+    </div>
+    
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="<%= baseUrl %>/assets/js/get_entity_id.js"></script>
+    <script src="<%= baseUrl %>/assets/js/date_format.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script> -->
+            <%- include ('common/script-link') %>
+    <script>
+    // Fetch Hajj packages using AJAX
+    var packageId = getEntityIdFromUrl();
+  // Fetch Hajj packages using AJAX
+  fetch('<%= baseUrl %>/user/displayBookingDetails/' + packageId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+
+            .then(data => {
+                console.log("Fetched Hajj packages:", data); // Log fetched data
+                // Process the fetched Hajj package data
+                const packageContainer = document.getElementById("packageContainer");
+                // data.forEach(package => {
+                if (typeof data === 'object' && data !== null && data.packages) 
+                {
+                    const packageData = data.packages;
+                    let packageCard = `
+                    <div class="border border-dark mt-200 px-5 ">
+            <div class="row mt-5 border border-dark">
+                <div class="mt-2 mb-2">
+                    <span class="text-dark h3 text-center">Booking person name :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${data.customer_name}</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div>
+                    <span class="text-dark h3 text-center">Number of adults :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${data.adult_count}</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div>
+                    <span class="text-dark h3 text-center">Number of child :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${data.child_count}</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div>
+                    <span class="text-dark h3 text-center">Adult package price :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${packageData.adult_price} ₹</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div>
+                    <span class="text-dark h3 text-center">Child package price :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${packageData.child_price} ₹</span>
+                </div>
+            </div>
+            <div class="row mt-3 mb-5 border border-dark">
+                <div class="mt-2 mb-2">
+                    <span class="text-dark h3 text-center">Total price :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="h3">${data.total_price} ₹</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="form-check border border-dark text-center py-3">
+                    <input class="form-check-input h3" type="radio" name="flexRadioDefault" id="payOnline">
+                    <label class="form-check-label h2" for="payOnline">
+                      Pay Online
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="form-check border border-dark text-center py-3">
+                    <input class="form-check-input h3" type="radio" name="flexRadioDefault" id="payOnSpot" checked>
+                    <label class="form-check-label h2" for="payOnSpot">
+                      Pay on the Spot
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-warning btn-lg btn-block font-weight-bold text-dark mt-4 mb-5" id="bookButton">Book Now</button>
+        </div>
+                        `;
+                        packageContainer.innerHTML += packageCard;
+                        const bookButton = document.getElementById("bookButton");
+                        bookButton.addEventListener("click", function() {
+                    const payOnline = document.getElementById("payOnline").checked;
+                    if (payOnline) {
+                        // Redirect to pay online page
+                        window.location.href = "<%= baseUrl %>/payOnline";
+                    } else {
+                        // Redirect to thank you page
+                        window.location.href = "<%= baseUrl %>/user/thank_u";
+                    }
+                });
+                    // });
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching packages:", error);
+                // Handle error
+            });
+    </script>
+</body>
+</html>
+

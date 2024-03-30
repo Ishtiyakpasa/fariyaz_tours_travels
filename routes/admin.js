@@ -3,6 +3,7 @@ const router = express.Router()
 const package_controller = require('../controllers/package_controller')
 const authMiddleware = require('../middlewares/auth_middlewares')
 const login_controller = require('../controllers/login_controller')
+const booking_controller = require('../controllers/booking_controller')
 const upload = require('../middlewares/multerconfig');
 const contact_controller = require('../controllers/contact_controller')
 
@@ -58,8 +59,9 @@ router.post('/package_management/add_package', upload.single('thumbnail'), packa
 router.get('/package_management/data', package_controller.getAllPackageData);
 router.get('/package_management/get_package/:id', package_controller.getPackage);
 router.post('/package_management/edit_package/:id', package_controller.updatePackage);
-router.delete('/package_management/delete_package/:id', package_controller.deletePackage);
+router.delete('/delete_package/:id', package_controller.deletePackage);
 
-
-
+//routes for booking
+router.get('/getbookings', booking_controller.getAllbookings);
+router.delete('/delete_booking/:id', booking_controller.deleteBooking);
 module.exports=router

@@ -39,52 +39,53 @@
        <div class="row justify-content-center">
            <div class="col-md-6 border border-dark mb-3">
             <h2 class="mt-3 mb-4 text-warning text-center">Book Package</h2>
-               <form id="sentMessage" action="<%= baseUrl %>/user/booking_controller" method="post" enctype="multipart/form-data">
-                   <div class="mb-3">
-                       <label for="name" class="form-label form-control-lg">Package Name</label>
-                       <input type="text" class="form-control form-control-lg " name="name" id="package_name" readonly>
-                   </div>
-                   <div class="mb-3">
-                       <label for="name" class="form-label form-control-lg">Your Name</label>
-                       <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Enter your name" required>
-                   </div>
-                    <div class="mb-3">
-                        <label for="number" class="form-label form-control-lg">Contact Number</label>
-                        <input type="number" class="form-control form-control-lg" name="contact" id="contact" placeholder="Enter your contact number" required>
-                    </div>
-                   <div class="mb-3">
-                       <label for="email" class="form-label form-control-lg">Your Email</label>
-                       <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email" required>
-                       <div id="emailError" class="invalid-feedback"></div>
-                   </div>
-                   <div class="mb-3">
-                        <label for="city" class="form-label form-control-lg">State</label>
-                        <input type="text" class="form-control form-control-lg" name="state" id="state" placeholder="Enter your state" required>
-                    </div>
-                   <div class="mb-3">
-                       <label for="city" class="form-label form-control-lg">City</label>
-                       <input type="text" class="form-control form-control-lg" name="city" id="city" placeholder="Enter your city" required>
-                   </div>
-                   <div class="mb-3">
-                       <label for="name" class="form-label form-control-lg">Adults</label>
-                       <input type="number" class="form-control form-control-lg" id="adult_count" name="adult_count" value="0" required>
-                   </div>
-                   <div class="mb-3">
-                        <label for="name" class="form-label form-control-lg">Childs</label>
-                        <input type="number" class="form-control form-control-lg" id="child_count" name="child_count" value="0" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label form-control-lg">Upload Passport</label>
-                        <input type="file" class="form-control form-control-lg" id="passport_upload" name="passport_upload" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label form-control-lg">Upload Adhar</label>
-                        <input type="file" class="form-control form-control-lg" id="adhar_upload" name="adhar_upload" required>
-                    </div>
-                   <div class=" mb-3 text-center"> <!-- Aligns the button to the center -->
-                       <button type="submit" class="btn btn-warning text-light">Submit</button>
-                   </div>
-               </form>
+            <form id="sentMessage" name="sentMessage" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label form-control-lg">Package Name</label>
+                    <input type="text" class="form-control form-control-lg" name="name" id="package_name" readonly required>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label form-control-lg">Your Name</label>
+                    <input type="text" class="form-control form-control-lg" name="customer_name" id="customer_name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label form-control-lg">Contact Number</label>
+                    <input type="tel" class="form-control form-control-lg" name="contact" id="contact" placeholder="Enter your contact number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label form-control-lg">Your Email</label>
+                    <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email" required>
+                    <div id="emailError" class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label form-control-lg">State</label>
+                    <input type="text" class="form-control form-control-lg" name="state" id="state" placeholder="Enter your state" required>
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label form-control-lg">City</label>
+                    <input type="text" class="form-control form-control-lg" name="city" id="city" placeholder="Enter your city" required>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label form-control-lg">Adults</label>
+                    <input type="number" class="form-control form-control-lg" id="adult_count" name="adult_count" value="0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label form-control-lg">Children</label>
+                    <input type="number" class="form-control form-control-lg" id="child_count" name="child_count" value="0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passport_upload" class="form-label form-control-lg">Upload Passport</label>
+                    <input type="file" class="form-control form-control-lg" id="passport_upload" name="passport_upload" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <label for="adhar_upload" class="form-label form-control-lg">Upload Adhar</label>
+                    <input type="file" class="form-control form-control-lg" id="adhar_upload" name="adhar_upload" accept="image/*" required>
+                </div>
+                <div class="mb-3 text-center">
+                    <button id="submitButton" type="submit" class="btn btn-warning text-light">Submit</button>
+                </div>
+            </form>
+            
            </div>
        </div>
    </div>
@@ -115,6 +116,37 @@
         });
       });
    </script>
+   <script>
+   $(document).ready(function() {
+    $('#sentMessage').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        var formData = new FormData($(this)[0]); // Get form data
+        
+        $.ajax({
+            url: '<%= baseUrl %>/user/booking_controller',
+            type: 'POST',
+            data: formData,
+            dataType:'JSON',
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log('Form submitted successfully');
+                if(response.id){
+                    window.location.href = "<%= baseUrl %>/user/payment/" + response.id;
+                }else{
+                    alert('Something went wrong')
+                }
+                // Handle success response if needed
+            },
+            error: function(xhr, status, error) {
+                console.error('Form submission failed');
+                // Handle error response if needed
+            }
+        });
+    });
+});
+    </script>
         
 </body>
 
