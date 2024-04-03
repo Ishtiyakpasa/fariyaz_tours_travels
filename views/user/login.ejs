@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="<%= baseUrl %>/assets/images/android-chrome-192x192.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="<%= baseUrl %>/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%= baseUrl %>/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <%- include('common/css-link') %>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center mt-200">
+        <div class="col-md-6">
+            <form id="loginForm" name="loginForm">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="email" name="email" class="form-control" style="max-width: 400px;" />
+                    <label class="form-label" for="form2Example1">Email address</label>
+                </div>
+            
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control" style="max-width: 400px;" />
+                    <label class="form-label" for="form2Example2">Password</label>
+                </div>
+            
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-warning btn-block font-weight-bold mb-4" style="max-width: 400px;">Log in</button>
+            
+                <!-- Register buttons -->
+                <div class="form-outline px-5">
+                    <h5 class="text-dark">Don't have an account? <a class="text-warning" href="<%= baseUrl %>/user/register">Register</a></h5>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="<%= baseUrl %>/assets/js/get_entity_id.js"></script>
+<script src="<%= baseUrl %>/assets/js/date_format.js"></script>
+<script src="<%= baseUrl %>/assets/js/pages/authentication.init.js"></script>
+<script src="<%= baseUrl %>/assets/js/pages/validation.init.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.6/dist/sweetalert2.all.min.js"></script>
+<%- include ('common/script-link') %>
+
+<script>
+  $(document).ready(function() {
+    $('#loginForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form data
+        var formData = {
+            email: $('#email').val(),
+            password: $('#password').val()
+        };
+
+        // Send AJAX request
+        $.ajax({
+            url: '<%= baseUrl %>/user/user_login', // Replace with your backend route
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                console.log('Login successful:', response);
+                // Show success SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: 'You have successfully logged in!',
+                    showConfirmButton: false,
+                    timer: 2000 // Close alert after 2 seconds
+                });
+                // Redirect to dashboard or show success message
+                setTimeout(() => {
+                window.location.href = "<%= baseUrl %>/user";
+              }, 2500);
+            },
+            error: function(xhr, status, error) {
+                console.error('Login failed:', error);
+                // Show error SweetAlert for failed login
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: 'Email or password is incorrect!',
+                    showConfirmButton: false,
+                    timer: 2000 // Close alert after 2 seconds
+                });
+            }
+        });
+    });
+});
+
+  </script>
+  
+</body>
+</html>
+

@@ -7,11 +7,15 @@ const user = require('./routes/user');
 const expressLayouts = require('express-ejs-layouts');
 const upload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
+// const {isLoggedIn} = require('./middlewares/auth_middlewares');
 // const bodyParser = require('body-parser');
 const multer = require('multer');
 app.set('view engine','ejs')
 
- // Set destination folder
+
+ // Attach the middleware to all routes
+//  app.use(isLoggedIn);
+ 
 
 // Middleware to set base URL
 app.use((req, res, next) => {

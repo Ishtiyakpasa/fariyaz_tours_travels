@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 
-const uploadDir = 'public/assets/images/thumbnails';
+const uploadDir = 'public/assets/images/documents';
 
 // Create the directory if it doesn't exist
 if (!fs.existsSync(uploadDir)) {

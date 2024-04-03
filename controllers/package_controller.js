@@ -153,16 +153,28 @@ async function deletePackage(req, res) {
   const id = parseInt(req.params.id, 10);
 
   try {
+    // Check the number of bookings associated with the package
+    const bookingCount = await prisma.bookings.count({
+      where: { package_id: id },
+    });
+
+    // If there are bookings associated with the package, show a warning
+    if (bookingCount > 0) {
+      return res.status(200).json({ error: 'Cannot delete package with associated bookings' });
+    }
+
+    // If there are no associated bookings, proceed with deleting the package
     const deletedPackage = await prisma.packages.delete({
       where: { id: id },
     });
 
-    res.json({success:true, message: 'Package deleted successfully' });
+    res.json({ success: true, message: 'Package deleted successfully' });
   } catch (error) {
     console.error('Error deleting package:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(400).json({ error: 'Internal Server Error' });
   }
 }
+
 
 module.exports = {
   // getAllPackage,
